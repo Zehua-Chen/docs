@@ -176,6 +176,19 @@ export default {
 
 <div class="composition-api">
 
+`watch` is shallow by default: the callback will only trigger when the watched property has been assigned a new value - it won't trigger on nested property changes.
+  
+```js
+const array = ref([]);
+
+watch(
+  array,
+  () => {
+    // wont trigger on array.push
+  }
+);
+```
+  
 When you call `watch()` directly on a reactive object, it will implicitly create a deep watcher - the callback will be triggered on all nested mutations:
 
 ```js
